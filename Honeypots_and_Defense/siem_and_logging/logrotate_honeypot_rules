@@ -1,0 +1,29 @@
+# 1. Cấu hình cho Cowrie SSH Honeypot
+/home/cowrie/cowrie/var/log/cowrie/cowrie.json {
+   daily
+   rotate 7
+   compress
+   missingok
+   notifempty
+   copytruncate
+}
+
+# 2. Cấu hình cho Glastopf Web Honeypot
+/home/glastopf/my_honeypot/log/glastopf.log {
+   daily
+   rotate 7
+   compress
+   missingok
+   notifempty
+   copytruncate
+}
+
+# 3. Cấu hình cho Custom Web Portal (ShadowAuth)
+/home/adminhp/web_honeypot/*.txt {
+   daily
+   rotate 7
+   compress
+   missingok
+   notifempty
+   copytruncate
+}

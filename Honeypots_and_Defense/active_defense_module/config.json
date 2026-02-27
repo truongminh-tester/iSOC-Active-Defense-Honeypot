@@ -1,0 +1,19 @@
+{
+    "SYSTEM": {
+      "BAIT_DIR": "/srv/samba/tailieu",
+      "BACKUP_DIR": "/hidden/backup",
+      "EVIDENCE_DIR": "/home/adminhp/malware_zoo",
+      "LOG_FILE": "/var/log/syslog",
+      "IDS_LOG_FILE": "/var/log/samba_ids.log"
+    },
+    "DEFENSE": {
+      "BLOCK_ENABLED": true,
+      "RANSOMWARE_THRESHOLD": 5,
+      "FORGIVE_TIMEOUT": 60,
+      "RESTORE_DELAY_MIN": 1.5,
+      "RESTORE_DELAY_MAX": 4.0
+    },
+    "ALERTS": {
+      "SLACK_WEBHOOK": "https://hooks.slack.com/services/YOUR_WORKSPACE/YOUR_BOT/YOUR_TOKEN"
+    }
+  }

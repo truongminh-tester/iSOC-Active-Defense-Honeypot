@@ -1,0 +1,13 @@
+[Unit]
+Description=Web Honeypot (Fake Admin)
+After=network.target
+
+[Service]
+User=adminhp
+Group=adminhp
+WorkingDirectory=/home/adminhp/web_honeypot
+ExecStart=/usr/bin/python3 /home/adminhp/web_honeypot/app.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

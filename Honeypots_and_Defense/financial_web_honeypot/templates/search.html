@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Internal Staff Search</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; min-height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex; justify-content: center; align-items: center;
+            color: #ffffff;
+            background-image: url("https://images.unsplash.com/photo-1550751827-4bd374c3f58b");
+            background-size: cover; background-position: center; background-repeat: no-repeat;
+            position: relative;
+        }
+        body::before {
+            content: ""; position: absolute; inset: 0;
+            background: rgba(0, 0, 0, 0.85); z-index: 0;
+        }
+        .box {
+            position: relative; z-index: 1;
+            width: 650px; /* Rộng hơn chút để chứa bảng */
+            padding: 40px; text-align: center;
+            background: rgba(30, 30, 30, 0.95);
+            border-radius: 8px; border-top: 3px solid #e74c3c;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(231, 76, 60, 0.08);
+            backdrop-filter: blur(6px);
+        }
+        .icon { font-size: 42px; margin-bottom: 10px; }
+        h2 { margin: 10px 0 5px; font-size: 22px; letter-spacing: 1px; }
+        .warning { color: #e74c3c; font-size: 11px; font-weight: bold; letter-spacing: 2px; margin-bottom: 25px; }
+        .session-info { color: #888; font-size: 12px; margin-bottom: 20px; }
+
+        /* Form Input */
+        .search-container { display: flex; gap: 10px; margin-bottom: 20px; }
+        input {
+            width: 100%; padding: 12px 0;
+            background: transparent; border: none; border-bottom: 1px solid #555;
+            color: #ffffff; font-size: 14px; outline: none; transition: 0.3s;
+        }
+        input:focus { border-bottom: 1px solid #e74c3c; }
+        button {
+            width: 150px; padding: 12px;
+            background-color: #e74c3c; color: #ffffff;
+            border: none; border-radius: 4px;
+            font-size: 14px; font-weight: bold; cursor: pointer; transition: 0.3s;
+        }
+        button:hover { background-color: #c0392b; box-shadow: 0 0 12px rgba(231, 76, 60, 0.6); }
+
+        /* --- PHẦN HIỂN THỊ KẾT QUẢ --- */
+        table { width: 100%; margin-top: 20px; border-collapse: collapse; text-align: left; }
+        th { color: #e74c3c; border-bottom: 1px solid #555; padding: 10px; font-size: 13px; }
+        td { border-bottom: 1px solid #333; padding: 10px; font-size: 14px; color: #ddd; }
+
+        /* --- PHẦN HIỂN THỊ LỖI (BẪY) --- */
+        .error-box {
+            margin-top: 25px; padding: 15px;
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff4444; border-radius: 4px;
+            color: #ff6b6b; font-family: 'Courier New', monospace; font-size: 13px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="icon">🗂️</div>
+        <h2>INTERNAL STAFF SEARCH</h2>
+        <div class="session-info">User: {{ username }} | Session ID: #8821X</div>
+        <div class="warning">AUTHORIZED PERSONNEL ONLY - LEVEL 5</div>
+
+        <form method="POST" class="search-container">
+            <input type="text" name="query" placeholder="Enter Staff ID or Name..." required>
+            <button type="submit">SEARCH</button>
+        </form>
+
+        {% if results %}
+            <table>
+                <tr><th>ID</th><th>Name</th><th>Position</th><th>Salary</th></tr>
+                {% for user in results %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td><b style="color:#fff">{{ user.name }}</b></td>
+                    <td>{{ user.position }}</td>
+                    <td>{{ user.salary }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+        {% if error %}
+            <div class="error-box">
+                <strong>⚠️ SYSTEM CRITICAL ERROR:</strong><br><br>
+                {{ error }}
+                <br><br>
+                <em>Traceback: MySQL Driver at /var/www/html/db_connect.php line 42</em>
+            </div>
+        {% endif %}
+
+        <div style="margin-top: 30px; font-size: 11px; color: #555;">[ Secure Connection Encrypted ]</div>
+    </div>
+</body>
+</html>

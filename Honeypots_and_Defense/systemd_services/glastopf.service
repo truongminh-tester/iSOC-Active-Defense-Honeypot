@@ -1,0 +1,18 @@
+[Unit]
+Description=Glastopf Web Honeypot
+After=network.target
+
+[Service]
+Type=simple
+User=glastopf
+Group=glastopf
+# Thư mục làm việc (Nơi chứa file glastopf.cfg và db)
+WorkingDirectory=/home/glastopf/my_honeypot
+# Đường dẫn tuyệt đối đến file chạy trong môi trường ảo
+ExecStart=/home/glastopf/glastopf/glastopf-env/bin/glastopf-runner
+# Tự động khởi động lại nếu bị crash
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

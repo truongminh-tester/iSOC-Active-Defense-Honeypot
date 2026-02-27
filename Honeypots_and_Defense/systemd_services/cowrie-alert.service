@@ -1,0 +1,18 @@
+[Unit]
+Description=Cowrie grouped Slack alerts
+After=network-online.target
+
+[Service]
+Type=simple
+# Nạp webhook + tham số từ phần 3
+EnvironmentFile=/etc/cowrie-alert.env
+# Chạy script phần 4
+ExecStart=/usr/bin/python3 /opt/cowrie_tools/cowrie_alert.py
+Restart=always
+RestartSec=5
+User=root
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

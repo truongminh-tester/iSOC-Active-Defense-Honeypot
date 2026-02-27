@@ -1,0 +1,14 @@
+[Unit]
+Description=Samba Honeypot Monitor Script
+After=network.target
+
+[Service]
+Type=simple
+User=root
+# SỬA ĐƯỜNG DẪN DƯỚI ĐÂY CHO ĐÚNG FILE CỦA BẠN
+ExecStart=/usr/bin/python3 /home/adminhp/samba_guard.py
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
